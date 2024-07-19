@@ -1,0 +1,275 @@
+[gd_scene load_steps=45 format=3 uid="uid://naec7m6wx7nn"]
+
+[ext_resource type="Shader" path="res://white_zombie.gdshader" id="1_ukxy6"]
+[ext_resource type="Texture2D" uid="uid://cb7gt7gdpja1l" path="res://white-zombie.png" id="2_813yu"]
+[ext_resource type="Texture2D" uid="uid://oqbyaxb0ta0g" path="res://zebra.png" id="2_m0svy"]
+[ext_resource type="Shader" path="res://zebra.gdshader" id="4_s0hrt"]
+[ext_resource type="Shader" path="res://zombie_fire.gdshader" id="5_5dl67"]
+[ext_resource type="Shader" path="res://testeConhecimento.gdshader" id="6_ivgsj"]
+[ext_resource type="Shader" path="res://disolve.gdshader" id="7_l1x7q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_egxpy"]
+shader = ExtResource("1_ukxy6")
+shader_parameter/sampler_texture = ExtResource("2_m0svy")
+
+[sub_resource type="Gradient" id="Gradient_jpo2c"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ixsja"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2jpis"]
+seamless = true
+color_ramp = SubResource("Gradient_jpo2c")
+noise = SubResource("FastNoiseLite_ixsja")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_inlxi"]
+shader = ExtResource("4_s0hrt")
+shader_parameter/fire_color_a = Color(0.859754, 0.251523, 0.247724, 1)
+shader_parameter/fire_color_b = Color(0.0901961, 0.858824, 0, 1)
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_2jpis")
+
+[sub_resource type="Gradient" id="Gradient_4ffyl"]
+offsets = PackedFloat32Array(0, 0, 0, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.9, 0.9, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3ncu0"]
+offset = Vector3(-1000, 1000, -1000)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w4b3m"]
+seamless = true
+color_ramp = SubResource("Gradient_4ffyl")
+noise = SubResource("FastNoiseLite_3ncu0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w0nqm"]
+shader = ExtResource("5_5dl67")
+shader_parameter/color_a = Color(1.92523e-07, 0.340076, 0.887087, 1)
+shader_parameter/color_b = Color(0.391608, 0.845941, 1, 1)
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_w4b3m")
+
+[sub_resource type="Gradient" id="Gradient_xne06"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5tgc4"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cyfmj"]
+seamless = true
+color_ramp = SubResource("Gradient_xne06")
+noise = SubResource("FastNoiseLite_5tgc4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iiq7h"]
+shader = ExtResource("6_ivgsj")
+shader_parameter/color_a = Color(0.960784, 0, 0, 1)
+shader_parameter/color_b = Color(0.985198, 0.784129, 0.372036, 1)
+shader_parameter/sampler_noise = SubResource("NoiseTexture2D_cyfmj")
+
+[sub_resource type="Gradient" id="Gradient_5nxfe"]
+offsets = PackedFloat32Array(0.139344, 0.909836, 0.97541)
+colors = PackedColorArray(0.599613, 0.377354, 0.974484, 1, 0.294118, 0, 0, 1, 0.294118, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kpl72"]
+gradient = SubResource("Gradient_5nxfe")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_lny4b"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0wu7e"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uxsfy"]
+color_ramp = SubResource("Gradient_lny4b")
+noise = SubResource("FastNoiseLite_0wu7e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d8y5v"]
+shader = ExtResource("7_l1x7q")
+shader_parameter/fade_out = 1.0
+shader_parameter/desease_color = Color(0.557192, 0.275234, 0.851009, 1)
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_uxsfy")
+shader_parameter/gradient_sampler = SubResource("GradientTexture2D_kpl72")
+
+[sub_resource type="Environment" id="Environment_g7j02"]
+background_mode = 3
+ambient_light_sky_contribution = 0.0
+tonemap_white = 12.62
+ssr_fade_in = 0.439225
+ssr_fade_out = 0.659754
+ssao_radius = 13.62
+ssao_intensity = 11.43
+ssao_detail = 4.29
+ssil_radius = 12.74
+ssil_intensity = 10.26
+ssil_normal_rejection = 0.0
+sdfgi_bounce_feedback = 1.92
+glow_enabled = true
+glow_intensity = 5.09
+glow_hdr_scale = 0.32
+fog_light_color = Color(0.94661, 0.952167, 0.960907, 1)
+fog_light_energy = 6.05
+fog_sun_scatter = 0.34
+fog_density = 0.4942
+volumetric_fog_density = 0.7342
+volumetric_fog_emission_energy = 475.27
+volumetric_fog_gi_inject = 3.9
+volumetric_fog_length = 721.51
+volumetric_fog_ambient_inject = 5.76
+volumetric_fog_sky_affect = 0.935
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i7g0k"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qpwp6"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(200, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+inherit_velocity_ratio = 0.764
+direction = Vector3(-1, 1, 0)
+spread = 14.157
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_fvmas"]
+offsets = PackedFloat32Array(0, 0.467213)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xdo3y"]
+gradient = SubResource("Gradient_fvmas")
+
+[sub_resource type="Curve" id="Curve_auk6j"]
+_data = [Vector2(0, 0.461538), 0.0, 0.0, 0, 0, Vector2(1, 0.010989), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rucvu"]
+curve = SubResource("Curve_auk6j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gwjse"]
+lifetime_randomness = 0.71
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 12.448
+initial_velocity_max = 59.14
+gravity = Vector3(0, 0, 0)
+scale_min = 0.6
+scale_max = 2.15
+scale_curve = SubResource("CurveTexture_rucvu")
+color_ramp = SubResource("GradientTexture1D_xdo3y")
+turbulence_enabled = true
+turbulence_noise_scale = 4.789
+turbulence_noise_speed_random = 1.0
+collision_use_scale = true
+
+[sub_resource type="Gradient" id="Gradient_fn144"]
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nnv7p"]
+gradient = SubResource("Gradient_fn144")
+
+[sub_resource type="Curve" id="Curve_53qa8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.21978), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cubg3"]
+curve = SubResource("Curve_53qa8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ewp57"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 119.832
+initial_velocity_min = 7.19
+initial_velocity_max = 49.44
+gravity = Vector3(0, 98, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_cubg3")
+color_ramp = SubResource("GradientTexture1D_nnv7p")
+
+[sub_resource type="Gradient" id="Gradient_8y25l"]
+offsets = PackedFloat32Array(0.204918, 0.885246)
+colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_epxeu"]
+gradient = SubResource("Gradient_8y25l")
+
+[sub_resource type="Curve" id="Curve_x8tco"]
+_data = [Vector2(0.00666666, 1), 0.0, 0.0, 0, 0, Vector2(0.133333, 0.230769), 0.568397, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0om2t"]
+curve = SubResource("Curve_x8tco")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d1pxg"]
+emission_shape_scale = Vector3(20, 20, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 1.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 53.76
+radial_velocity_max = 53.76
+radial_velocity_curve = SubResource("CurveTexture_0om2t")
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -35.48
+linear_accel_max = -9.68
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+color_ramp = SubResource("GradientTexture1D_epxeu")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="White-zombie" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_egxpy")
+position = Vector2(463, 175)
+texture = ExtResource("2_813yu")
+
+[node name="Zebra" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_inlxi")
+position = Vector2(771, 230)
+texture = ExtResource("2_m0svy")
+
+[node name="White-zombie2" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_w0nqm")
+position = Vector2(212, 225)
+texture = ExtResource("2_813yu")
+
+[node name="White-zombie4" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_iiq7h")
+position = Vector2(30, 223)
+texture = ExtResource("2_813yu")
+
+[node name="White-zombie3" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_d8y5v")
+position = Vector2(122, 366)
+texture = ExtResource("2_813yu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_g7j02")
+
+[node name="fire" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_i7g0k")
+position = Vector2(50, -114)
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_qpwp6")
+lifetime = 15.0
+
+[node name="fire2" type="GPUParticles2D" parent="."]
+position = Vector2(3, -4)
+amount = 650
+process_material = SubResource("ParticleProcessMaterial_gwjse")
+
+[node name="explosion" type="GPUParticles2D" parent="."]
+position = Vector2(38, -16)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_ewp57")
+lifetime = 0.2
+explosiveness = 0.66
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(233, -52)
+amount = 87
+process_material = SubResource("ParticleProcessMaterial_d1pxg")
+lifetime = 0.4
+collision_base_size = 0.0
+trail_lifetime = 5.13
